@@ -1,0 +1,84 @@
+[project]
+name = "pocketrag"
+version = "2.0.0"
+description = "Privacy-first, local RAG engine. Run LLM search on your documents without the cloud."
+readme = "README.md"
+license = {text = "MIT"}
+authors = [
+    {name = "PocketRAG Team"}
+]
+requires-python = ">=3.9"
+classifiers = [
+    "Development Status :: 4 - Beta",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: MIT License",
+    "Operating System :: OS Independent",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.9",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Topic :: Scientific/Engineering :: Artificial Intelligence",
+]
+dependencies = [
+    "typer>=0.9.0",
+    "rich>=13.0.0",
+    "ollama>=0.1.0",
+    "lancedb>=0.5.0",
+    "sentence-transformers>=2.2.0",
+    "pypdf>=3.0.0",
+    "tqdm>=4.65.0",
+    "numpy>=1.24.0",
+    "pyarrow>=12.0.0",
+]
+
+[project.optional-dependencies]
+fast = [
+    "fastembed>=0.2.0",  # Faster embedding backend
+]
+docs = [
+    "python-docx>=0.8.11",  # DOCX support
+    "beautifulsoup4>=4.12.0",  # HTML parsing
+    "pyyaml>=6.0",  # YAML support
+]
+rerank = [
+    "sentence-transformers>=2.2.0",  # For cross-encoder reranking
+]
+full = [
+    "fastembed>=0.2.0",
+    "python-docx>=0.8.11",
+    "beautifulsoup4>=4.12.0",
+    "pyyaml>=6.0",
+]
+dev = [
+    "pytest>=7.0.0",
+    "pytest-cov>=4.0.0",
+    "black>=23.0.0",
+    "ruff>=0.1.0",
+    "mypy>=1.0.0",
+]
+
+[project.scripts]
+pocketrag = "pocketrag.cli:main"
+
+[build-system]
+requires = ["setuptools>=61.0", "wheel"]
+build-backend = "setuptools.build_meta"
+
+[tool.setuptools.packages.find]
+include = ["pocketrag*"]
+
+[tool.black]
+line-length = 88
+target-version = ["py39", "py310", "py311", "py312"]
+
+[tool.ruff]
+line-length = 88
+target-version = "py39"
+select = ["E", "F", "W", "I", "N", "UP", "B", "C4"]
+
+[tool.mypy]
+python_version = "3.9"
+warn_return_any = true
+warn_unused_ignores = true
+disallow_untyped_defs = false

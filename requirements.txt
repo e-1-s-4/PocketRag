@@ -1,0 +1,7 @@
+typer
+rich
+ollama
+lancedb
+sentence-transformers
+pypdf
+tqdm
